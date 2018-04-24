@@ -15,3 +15,4 @@ limitations under the License.]]
 add_executable(preprocess preprocess.cpp ${CORE_HEADERS})
 target_compile_options(preprocess PUBLIC ${OPTS})
 target_include_directories(preprocess PUBLIC ..)
+target_link_libraries(preprocess PUBLIC Threads::Threads)

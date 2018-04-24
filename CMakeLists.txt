@@ -15,10 +15,11 @@ limitations under the License.]]
 cmake_minimum_required(VERSION 3.9)
 project(GridGraph)
 
+#GLOBALS
 set(CMAKE_CXX_STANDARD 14)
 set(OPTS -march=native -Wall -Wextra -Werror -O3)
-
 file(GLOB CORE_HEADERS "core/*.hpp")
+find_package(Threads REQUIRED)
 
 option(BUILD_EXAMPLES "build examples" ON)
 
