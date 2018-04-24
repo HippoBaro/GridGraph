@@ -22,6 +22,7 @@ file(GLOB CORE_HEADERS "core/*.hpp")
 find_package(Threads REQUIRED)
 
 option(BUILD_EXAMPLES "build examples" ON)
+option(USE_OPENMP "use OpenMP multithreading" ON)
 
 add_subdirectory(tools)
 

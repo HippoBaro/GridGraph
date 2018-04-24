@@ -14,7 +14,9 @@ limitations under the License.]]
 
 file(GLOB EXAMPLES_SRC "*.cpp")
 
-find_package(OpenMP REQUIRED)
+if (${USE_OPENMP})
+    find_package(OpenMP REQUIRED)
+endif ()
 
 foreach(EXAMPLE_SRC ${EXAMPLES_SRC})
     get_filename_component(TRAGET_NAME ${EXAMPLE_SRC} NAME_WE)
@@ -23,5 +25,11 @@ foreach(EXAMPLE_SRC ${EXAMPLES_SRC})
     add_executable(${TRAGET_NAME} ${EXAMPLE_SRC} ${CORE_HEADERS})
     target_compile_options(${TRAGET_NAME} PUBLIC ${OPTS})
     target_include_directories(${TRAGET_NAME} PUBLIC ..)
-    target_link_libraries(${TRAGET_NAME} PUBLIC Threads::Threads OpenMP::OpenMP_CXX)
+
+    if (${USE_OPENMP})
+        target_link_libraries(${TRAGET_NAME} PUBLIC Threads::Threads OpenMP::OpenMP_CXX)
+    else()
+        target_link_libraries(${TRAGET_NAME} PUBLIC Threads::Threads)
+    endif ()
+
 endforeach(EXAMPLE_SRC)
