@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
     VertexId black_count = 0;
     VertexId red_count = 0;
 
-    auto other_count = graph.stream_edges<VertexId>([&](Edge& e) {
+    uint64_t other_count = graph.stream_edges<uint64_t>([&](Edge& e) {
         switch (e.source % 2 && e.target % 2 ? color::black : !(e.source % 2) && !(e.target % 2) ? color::red : color::other) {
             case color::other:
                 return 1;
@@ -39,7 +39,7 @@ int main(int argc, char const *argv[])
         return 0;
     });
 
-    double conductance = static_cast<double>(other_count) / (std::min(black_count, red_count) + other_count);
+    double conductance = other_count / (static_cast<double>(std::min(black_count, red_count)) + other_count);
     printf("conductance: %lf\n", conductance);
 
     return 0;
