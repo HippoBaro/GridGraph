@@ -25,6 +25,8 @@ int main(int argc, char ** argv) {
 	VertexId start_vid = atoi(argv[2]);
 	long memory_bytes = (argc>=4)?atol(argv[3])*1024l*1024l*1024l:8l*1024l*1024l*1024l;
 
+	omp_set_num_threads(std::atoi(argv[4]));
+
 	Graph graph(path);
 	graph.set_memory_bytes(memory_bytes);
 	Bitmap * active_in = graph.alloc_bitmap();
