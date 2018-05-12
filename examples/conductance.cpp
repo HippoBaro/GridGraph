@@ -19,7 +19,7 @@ int main(int argc, char const *argv[])
 
     std::string path = argv[1];
 
-    Graph graph(path, std::atoi(argv[3]));
+    Graph graph(path);
     graph.set_memory_bytes(std::atoi(argv[2]) * std::giga::num);
 
     omp_set_num_threads(std::atoi(argv[3]));

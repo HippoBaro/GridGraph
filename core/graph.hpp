@@ -72,16 +72,17 @@ public:
 	EdgeId edges;
 	int partitions;
 
-	Graph (std::string path, int num_thread = std::thread::hardware_concurrency()) {
-		PAGESIZE = 4096;
-		buffer_pool = new char * [num_thread*1];
-		for (int i=0;i<num_thread*1;i++) {
-			buffer_pool[i] = (char *)memalign(PAGESIZE, IOSIZE);
-			assert(buffer_pool[i]!=NULL);
-			memset(buffer_pool[i], 0, IOSIZE);
-		}
-		init(path);
-	}
+    Graph (std::string path) {
+        PAGESIZE = 4096;
+        parallelism = omp_get_max_threads();
+        buffer_pool = new char * [parallelism*1];
+        for (int i=0;i<parallelism*1;i++) {
+            buffer_pool[i] = (char *)memalign(PAGESIZE, IOSIZE);
+            assert(buffer_pool[i]!=NULL);
+            memset(buffer_pool[i], 0, IOSIZE);
+        }
+        init(path);
+    }
 
 	void set_memory_bytes(long memory_bytes) {
 		this->memory_bytes = memory_bytes;

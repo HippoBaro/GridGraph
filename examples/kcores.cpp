@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
     int k = atoi(argv[2]);
     int max_it = atoi(argv[3]);
 
-    Graph graph(path, std::atoi(argv[3]));
+    Graph graph(path);
     graph.set_memory_bytes(std::atoi(argv[4])*std::giga::num);
 
     omp_set_num_threads(std::atoi(argv[5]));
