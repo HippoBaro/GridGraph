@@ -15,6 +15,7 @@ limitations under the License.]]
 file(GLOB EXAMPLES_SRC "*.cpp")
 
 find_package(OpenMP REQUIRED)
+add_definitions(-DUSE_OPENMP)
 
 foreach(EXAMPLE_SRC ${EXAMPLES_SRC})
     get_filename_component(TRAGET_NAME ${EXAMPLE_SRC} NAME_WE)
