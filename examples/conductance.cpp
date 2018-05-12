@@ -13,14 +13,16 @@ enum class color {
 int main(int argc, char const *argv[])
 {
     if (argc < 2) {
-        fprintf(stderr, "usage: conductance [path] [memory budget in GB]\n");
+        fprintf(stderr, "usage: conductance [path] [memory budget in GB] [thread number]\n");
         exit(-1);
     }
 
     std::string path = argv[1];
 
-    Graph graph(path);
+    Graph graph(path, std::atoi(argv[3]));
     graph.set_memory_bytes(std::atoi(argv[2]) * std::giga::num);
+
+    omp_set_num_threads(std::atoi(argv[3]));
 
     VertexId black_count = 0;
     VertexId red_count = 0;

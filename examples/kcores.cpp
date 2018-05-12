@@ -7,7 +7,7 @@
 int main(int argc, char const *argv[])
 {
     if (argc < 2) {
-        fprintf(stderr, "usage: k-cores [path] [k] [max iteration] [memory budget in GB]\n");
+        fprintf(stderr, "usage: k-cores [path] [k] [max iteration] [memory budget in GB] [thread number]\n");
         exit(-1);
     }
 
@@ -15,8 +15,10 @@ int main(int argc, char const *argv[])
     int k = atoi(argv[2]);
     int max_it = atoi(argv[3]);
 
-    Graph graph(path);
+    Graph graph(path, std::atoi(argv[3]));
     graph.set_memory_bytes(std::atoi(argv[4])*std::giga::num);
+
+    omp_set_num_threads(std::atoi(argv[5]));
 
     Bitmap* active_in = graph.alloc_bitmap();
     Bitmap* active_out = graph.alloc_bitmap();

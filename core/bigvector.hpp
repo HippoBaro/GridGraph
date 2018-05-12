@@ -107,8 +107,7 @@ public:
 		assert(ret==0);
 	}
 	void fill(const T & value) {
-		int parallelism = std::thread::hardware_concurrency();
-		#pragma omp parallel num_threads(parallelism)
+		#pragma omp parallel
 		{
 			size_t begin_i, end_i;
 			std::tie(begin_i, end_i) = get_partition_range(length, omp_get_num_threads(), omp_get_thread_num());
