@@ -18,7 +18,9 @@ int main(int argc, char const *argv[])
     Graph graph(path);
     graph.set_memory_bytes(std::atoi(argv[4])*std::giga::num);
 
-    omp_set_num_threads(std::atoi(argv[5]));
+    auto threads = std::atoi(argv[5]);
+    printf("Thread number = %d", threads);
+    omp_set_num_threads(threads);
 
     Bitmap* active_in = graph.alloc_bitmap();
     Bitmap* active_out = graph.alloc_bitmap();

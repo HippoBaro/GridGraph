@@ -22,7 +22,9 @@ int main(int argc, char const *argv[])
     Graph graph(path);
     graph.set_memory_bytes(std::atoi(argv[2]) * std::giga::num);
 
-    omp_set_num_threads(std::atoi(argv[3]));
+    auto threads = std::atoi(argv[3]);
+    printf("Thread number = %d", threads);
+    omp_set_num_threads(threads);
 
     VertexId black_count = 0;
     VertexId red_count = 0;
