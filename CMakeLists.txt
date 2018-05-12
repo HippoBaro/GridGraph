@@ -17,7 +17,7 @@ project(GridGraph)
 
 #GLOBALS
 set(CMAKE_CXX_STANDARD 14)
-set(OPTS -march=native;-Wall;-Wextra;-Werror;-Wno-unused;-Wno-unused-parameter;-O3;-g-Wno-unused-result)
+set(OPTS -march=native;-Wall;-Wextra;-Werror;-Wno-unused;-Wno-unused-parameter;-O3;-g;-Wno-unused-result)
 file(GLOB CORE_HEADERS "core/*.hpp")
 find_package(Threads REQUIRED)
 

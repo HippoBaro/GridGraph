@@ -26,7 +26,6 @@ Copyright (c) 2018 Hippolyte Barraud, Tsinghua University
 #include <omp.h>
 #endif
 #include <cstring>
-#include <optional>
 
 #include <thread>
 #include <vector>
