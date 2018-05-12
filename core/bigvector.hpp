@@ -107,7 +107,8 @@ public:
 		assert(ret==0);
 	}
 	void fill(const T & value) {
-		#pragma omp parallel
+        int parallelism = omp_get_max_threads();
+        #pragma omp parallel num_threads(parallelism)
 		{
 			size_t begin_i, end_i;
 			std::tie(begin_i, end_i) = get_partition_range(length, omp_get_num_threads(), omp_get_thread_num());
