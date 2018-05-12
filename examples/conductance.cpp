@@ -19,12 +19,12 @@ int main(int argc, char const *argv[])
 
     std::string path = argv[1];
 
-    Graph graph(path);
-    graph.set_memory_bytes(std::atoi(argv[2]) * std::giga::num);
-
     auto threads = std::atoi(argv[3]);
     printf("Thread number = %d\n", threads);
     omp_set_num_threads(threads);
+
+    Graph graph(path);
+    graph.set_memory_bytes(std::atoi(argv[2]) * std::giga::num);
 
     VertexId black_count = 0;
     VertexId red_count = 0;
