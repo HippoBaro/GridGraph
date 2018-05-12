@@ -16,7 +16,8 @@ file(GLOB EXAMPLES_SRC "*.cpp")
 
 find_package(OpenMP REQUIRED)
 add_definitions(-DUSE_OPENMP)
-list(APPEND OPTS ${OpenMP_CXX_FLAGS})
+
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS})
 
 foreach(EXAMPLE_SRC ${EXAMPLES_SRC})
     get_filename_component(TRAGET_NAME ${EXAMPLE_SRC} NAME_WE)
