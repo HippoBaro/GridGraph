@@ -25,10 +25,6 @@ foreach(EXAMPLE_SRC ${EXAMPLES_SRC})
     target_compile_options(${TRAGET_NAME} PUBLIC ${OPTS})
     target_include_directories(${TRAGET_NAME} PUBLIC ..)
 
-    if (${OpenMP_CXX_FOUND})
-        target_link_libraries(${TRAGET_NAME} PUBLIC Threads::Threads OpenMP::OpenMP_CXX )
-    else()
-        target_link_libraries(${TRAGET_NAME} PUBLIC Threads::Threads)
-    endif ()
+    target_link_libraries(${TRAGET_NAME} PUBLIC Threads::Threads OpenMP::OpenMP_CXX )
 
 endforeach(EXAMPLE_SRC)
