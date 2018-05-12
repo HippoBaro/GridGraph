@@ -16,15 +16,17 @@ file(GLOB EXAMPLES_SRC "*.cpp")
 
 find_package(OpenMP REQUIRED)
 add_definitions(-DUSE_OPENMP)
+list(APPEND OPTS ${OpenMP_CXX_FLAGS})
 
 foreach(EXAMPLE_SRC ${EXAMPLES_SRC})
     get_filename_component(TRAGET_NAME ${EXAMPLE_SRC} NAME_WE)
     message(STATUS "Configuring ${TRAGET_NAME}")
 
     add_executable(${TRAGET_NAME} ${EXAMPLE_SRC} ${CORE_HEADERS})
+    message(${OPTS})
     target_compile_options(${TRAGET_NAME} PUBLIC ${OPTS})
     target_include_directories(${TRAGET_NAME} PUBLIC ..)
 
-    target_link_libraries(${TRAGET_NAME} PUBLIC Threads::Threads OpenMP::OpenMP_CXX )
+    #target_link_libraries(${TRAGET_NAME} PUBLIC Threads::Threads)
 
 endforeach(EXAMPLE_SRC)
