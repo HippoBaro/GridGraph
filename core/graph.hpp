@@ -242,7 +242,7 @@ public:
 	}
 
 	template <typename T>
-	T stream_edges(std::function<T(Edge&)> process, Bitmap * bitmap = nullptr, T zero = 0, int update_mode = 1,
+	T stream_edges(std::function<T(Edge&,int)> process, Bitmap * bitmap = nullptr, T zero = 0, int update_mode = 1,
 		std::function<void(std::pair<VertexId,VertexId> vid_range)> pre_source_window = f_none_1,
 		std::function<void(std::pair<VertexId,VertexId> vid_range)> post_source_window = f_none_1,
 		std::function<void(std::pair<VertexId,VertexId> vid_range)> pre_target_window = f_none_1,
@@ -315,7 +315,7 @@ public:
 						for (long pos=offset % edge_unit;pos+edge_unit<=bytes;pos+=edge_unit) {
 							Edge & e = *(Edge*)(buffer+pos);
 							if (bitmap==nullptr || bitmap->get_bit(e.source)) {
-								local_value += process(e);
+								local_value += process(e, thread_id);
 							}
 						}
 					}
@@ -386,7 +386,7 @@ public:
 									continue;
 								}
 								if (bitmap==nullptr || bitmap->get_bit(e.source)) {
-									local_value += process(e);
+									local_value += process(e, thread_id);
 								}
 							}
 						}
