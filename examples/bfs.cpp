@@ -48,7 +48,7 @@ int main(int argc, char ** argv) {
 		std::swap(active_in, active_out);
 		active_out->clear();
 		graph.hint(parent);
-		active_vertices = graph.stream_edges<VertexId>([&](Edge & e){
+		active_vertices = graph.stream_edges<VertexId>([&](Edge & e, int){
 			if (parent[e.target]==-1) {
 				if (cas(&parent[e.target], -1, e.source)) {
 					active_out->set_bit(e.target);

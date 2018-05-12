@@ -37,7 +37,7 @@ int main(int argc, char const *argv[])
         std::swap(active_in, active_out);
         active_out->clear();
         graph.hint(degree);
-        graph.stream_edges<VertexId>([&](Edge& e) {
+        graph.stream_edges<VertexId>([&](Edge& e, int) {
             if (active_in->get_bit(e.target)) {
                 write_add(&degree[e.source], 1);
                 write_add(&degree[e.target], 1);

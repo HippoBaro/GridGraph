@@ -38,7 +38,7 @@ int main(int argc, char ** argv) {
 
 	degree.fill(0);
 	graph.stream_edges<VertexId>(
-		[&](Edge & e){
+		[&](Edge & e, int){
 			write_add(&degree[e.source], 1);
 			return 0;
 		}, nullptr, 0, 0
@@ -66,7 +66,7 @@ int main(int argc, char ** argv) {
 	for (int iter=0;iter<iterations;iter++) {
 		graph.hint(pagerank);
 		graph.stream_edges<VertexId>(
-			[&](Edge & e){
+			[&](Edge & e, int){
 				write_add(&sum[e.target], pagerank[e.source]);
 				return 0;
 			}, nullptr, 0, 1,

@@ -45,7 +45,7 @@ int main(int argc, char ** argv) {
 		std::swap(active_in, active_out);
 		active_out->clear();
 		graph.hint(label);
-		active_vertices = graph.stream_edges<VertexId>([&](Edge & e){
+		active_vertices = graph.stream_edges<VertexId>([&](Edge & e, int){
 			if (label[e.source]<label[e.target]) {
 				if (write_min(&label[e.target], label[e.source])) {
 					active_out->set_bit(e.target);

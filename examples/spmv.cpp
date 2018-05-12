@@ -50,7 +50,7 @@ int main(int argc, char ** argv) {
 	);
 	graph.hint(input);
 	graph.stream_edges<float>(
-		[&](Edge & e){
+		[&](Edge & e, int){
 			write_add(&output[e.target], input[e.source] * e.weight);
 			return 0;
 		}, nullptr, 0, 1,

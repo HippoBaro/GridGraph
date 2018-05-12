@@ -43,7 +43,7 @@ int main(int argc, char ** argv) {
 		iteration++;
 		printf("%7d: %d\n", iteration, active_vertices);
 		std::swap(active_in, active_out);
-		graph.stream_edges<VertexId>([&](Edge & e) {
+		graph.stream_edges<VertexId>([&](Edge & e, int) {
 			if (e.source<e.target && in_mis[e.target]) {
 				in_mis[e.target] = false;
 			}

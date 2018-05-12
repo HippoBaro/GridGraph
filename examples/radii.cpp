@@ -63,7 +63,7 @@ int main(int argc, char ** argv) {
 		int next = 1 - now;
 		std::swap(active_in, active_out);
 		active_out->clear();
-		active_vertices = graph.stream_edges<VertexId>([&](Edge & e) {
+		active_vertices = graph.stream_edges<VertexId>([&](Edge & e, int) {
 			if (visited[e.target][now] != visited[e.source][now]) {
 				__sync_fetch_and_or( &visited[e.target][next], visited[e.source][now] );
 				VertexId old_radii = radii[e.target];
@@ -119,7 +119,7 @@ int main(int argc, char ** argv) {
 		int next = 1 - now;
 		std::swap(active_in, active_out);
 		active_out->clear();
-		active_vertices = graph.stream_edges<VertexId>([&](Edge & e) {
+		active_vertices = graph.stream_edges<VertexId>([&](Edge & e, int) {
 			if (visited[e.target][now] != visited[e.source][now]) {
 				__sync_fetch_and_or( &visited[e.target][next], visited[e.source][now] );
 				VertexId old_radii = radii[e.target];
