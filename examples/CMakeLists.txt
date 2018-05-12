@@ -14,13 +14,7 @@ limitations under the License.]]
 
 file(GLOB EXAMPLES_SRC "*.cpp")
 
-find_package(OpenMP)
-
-if (OpenMP_CXX_FOUND)
-    add_definitions(-DUSE_OPENMP)
-else()
-    message(FATAL_ERROR "OpenMP could not be found. Aborting")
-endif ()
+find_package(OpenMP REQUIRED)
 
 foreach(EXAMPLE_SRC ${EXAMPLES_SRC})
     get_filename_component(TRAGET_NAME ${EXAMPLE_SRC} NAME_WE)
